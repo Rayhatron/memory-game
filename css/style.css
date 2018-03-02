@@ -6,6 +6,15 @@ body {
     margin: 0;
 }
 
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
 .board {
     display: flex;
     flex-wrap: wrap;
