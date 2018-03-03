@@ -1,12 +1,42 @@
 const cardsNodelist = document.getElementsByClassName('card');
 const board = document.querySelector('.board');
 const moveCounter = document.querySelector('.move-counter');
+const timer = document.querySelector('.timer');
 const cards = [...cardsNodelist];
 
 let clickedCardsNumber = 0; // Track number of clicked cards
 let clickedCards = []; // Track the cards that have been clicked
 let matchedCards = 0; // Track the number of cards that have been matched to determine if winner or not
-let moves = 0;
+let moves = 0; // Track the number of moves that the player has made
+
+// For tracking the time
+let hours = 0;
+let minutes = 0;
+let seconds = 0;
+let time;
+
+window.onload = () => {
+    // Auto start the timer as soon as the game loads
+    // TODO: Implement a start button that will start the time
+    time = setInterval(gameTimer, 1000);
+};
+
+function gameTimer() {
+    seconds++;
+
+    if(seconds == 60){
+        minutes++;
+        seconds = 0;
+    }
+
+    if(minutes == 60){
+        hours++;
+        minutes = 0;
+    }
+
+    // Add leading 0s as long as the hours, minutes or seconds are less than 10 so as to have a clean consistent timer UI
+    timer.innerHTML = `${((hours < 10) ? `0${hours}` : hours)}:${((minutes < 10) ? `0${minutes}`:minutes)}:${((seconds < 10) ? `0${seconds}`:seconds)}`;
+}
 
 function displayClickedCard() {
     // Limit the number of cards that can be revealed to 2
@@ -42,6 +72,7 @@ function matchClickedCards() {
             // TODO: Make a fancy congratulations message :) and ask the user if they want to play again 
             // As well as show them their Star rating and time it took to complete.
             alert("Winner!");
+            clearInterval(time);
         }else{
             allowCardsToBeSelected();
         }
