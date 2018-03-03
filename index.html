@@ -11,7 +11,7 @@
 <body>
     <h1>Memory Game</h1>
     <section class="dashboard">
-        <div>
+        <div class="stars">
             <div class="star-empty">
                 <i class="far fa-star"></i>
             </div>
@@ -41,7 +41,6 @@
             <div class="star">
                 <i class="fas fa-star"></i>
             </div>
-            
         </div>
         <div>
             <h3 class="timer">
@@ -102,6 +101,17 @@
         </div>
         <div class="card" data-icon="terminal">
             <i class="fas fa-terminal fa-3x"></i>
+        </div>
+    </section>
+    <section class="modal-container hide">
+        <div class="modal">
+            <div class="modal-dialog">
+                <p class="modal-stars"></p>
+                <h2>Congratulations you've won!</h2>
+                <p class="modal-message"></p>
+                <input type="button" value="Yes" onclick="restartGame()">
+                <input type="button" value="No" onclick="closeModal()">
+            </div>
         </div>
     </section>
     <script src="scripts/index.js"></script>

@@ -12,6 +12,14 @@ const stars = [...starsNodeList];
 const halfStars = [...halfStarsNodeList];
 const emptyStars = [...emptyStarsNodeList];
 
+
+// For congratulations popup once player has won
+const modalContainer = document.querySelector('.modal-container');
+const modalStars = document.querySelector('.modal-stars');
+const modalMessage = document.querySelector('.modal-message');
+const gameStars = document.querySelector('.stars');
+
+
 let clickedCardsNumber = 0; // Track number of clicked cards
 let clickedCards = []; // Track the cards that have been clicked
 let matchedCards = 0; // Track the number of cards that have been matched to determine if winner or not
@@ -35,6 +43,7 @@ window.onload = () => {
     emptyStars.forEach((emptyStar) => {
         emptyStar.classList.toggle('hide');
     });
+
 };
 
 function gameTimer() {
@@ -89,8 +98,9 @@ function matchClickedCards() {
         if(matchedCards == 8){
             // TODO: Make a fancy congratulations message :) and ask the user if they want to play again 
             // As well as show them their Star rating and time it took to complete.
-            alert("Winner!");
             clearInterval(time);
+            endGame();
+
         }else{
             allowCardsToBeSelected();
         }
@@ -127,6 +137,16 @@ function updateStarRating() {
         halfStars[0].classList.toggle('hide');
         emptyStars[0].classList.remove('hide');
     }
+}
+
+function endGame() {
+    modalStars.innerHTML = gameStars.innerHTML;
+    modalMessage.innerHTML = `It took you ${moves} moves and ${(hours > 0) ? `${hours} hours,` : ''} ${(minutes > 0) ? `${minutes} minutes and ` : ''} ${`${seconds} seconds`} to win the game.`;
+    modalContainer.classList.remove('hide');
+}
+
+function closeModal() {
+    modalContainer.classList.toggle('hide');
 }
 
 function allowCardsToBeSelected() {
