@@ -15,7 +15,7 @@ body {
     max-width: 500px;
 }
 
-.star, .star-half {
+.star, .star-half, .star-empty {
     display: inline;
     color: gold;
 }
@@ -47,4 +47,8 @@ body {
 
 .disable-card-click {
     pointer-events: none;
+}
+
+.hide {
+    display: none;
 }

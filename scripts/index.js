@@ -4,6 +4,14 @@ const moveCounter = document.querySelector('.move-counter');
 const timer = document.querySelector('.timer');
 const cards = [...cardsNodelist];
 
+// For updating the Star rating as player makes moves
+const starsNodeList = document.getElementsByClassName('star');
+const halfStarsNodeList = document.getElementsByClassName('star-half');
+const emptyStarsNodeList = document.getElementsByClassName('star-empty');
+const stars = [...starsNodeList];
+const halfStars = [...halfStarsNodeList];
+const emptyStars = [...emptyStarsNodeList];
+
 let clickedCardsNumber = 0; // Track number of clicked cards
 let clickedCards = []; // Track the cards that have been clicked
 let matchedCards = 0; // Track the number of cards that have been matched to determine if winner or not
@@ -19,6 +27,14 @@ window.onload = () => {
     // Auto start the timer as soon as the game loads
     // TODO: Implement a start button that will start the time
     time = setInterval(gameTimer, 1000);
+
+    halfStars.forEach((halfStar) => {
+        halfStar.classList.toggle('hide');
+    });
+
+    emptyStars.forEach((emptyStar) => {
+        emptyStar.classList.toggle('hide');
+    });
 };
 
 function gameTimer() {
@@ -57,6 +73,8 @@ function displayClickedCard() {
         // Once we have selected 2 cards, let's see if they match or not
         moves++;
         moveCounter.innerHTML = `Moves: ${moves}`;
+
+        updateStarRating();
         matchClickedCards();
     }
     
@@ -87,6 +105,28 @@ function matchClickedCards() {
         }, 1000);
     }
 
+}
+
+function updateStarRating() {
+    if(moves == 9 ) {
+        stars[2].classList.toggle('hide'); 
+        halfStars[2].classList.remove('hide'); 
+    }else if( moves == 11 ) {
+        halfStars[2].classList.toggle('hide');
+        emptyStars[2].classList.remove('hide');
+    }else if( moves == 13 ) {
+        stars[1].classList.toggle('hide'); 
+        halfStars[1].classList.remove('hide');
+    }else if( moves == 14 ) {
+        halfStars[1].classList.toggle('hide');
+        emptyStars[1].classList.remove('hide');
+    }else if( moves == 15 ) {
+        stars[0].classList.toggle('hide'); 
+        halfStars[0].classList.remove('hide');
+    }else if( moves == 16 ) {
+        halfStars[0].classList.toggle('hide');
+        emptyStars[0].classList.remove('hide');
+    }
 }
 
 function allowCardsToBeSelected() {
