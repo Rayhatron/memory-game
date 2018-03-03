@@ -12,30 +12,30 @@
     <h1>Memory Game</h1>
     <section class="dashboard">
         <div class="stars">
-            <div class="star-empty">
+            <div class="star-empty hide">
                 <i class="far fa-star"></i>
             </div>
-            <div class="star-half">
+            <div class="star-half hide">
                 <i class="fas fa-star-half"></i>
             </div>
             <div class="star">
                 <i class="fas fa-star"></i>
             </div>
 
-            <div class="star-empty">
+            <div class="star-empty hide">
                 <i class="far fa-star"></i>
             </div>
-            <div class="star-half">
+            <div class="star-half hide">
                     <i class="fas fa-star-half"></i>
                 </div>
             <div class="star">
                 <i class="fas fa-star"></i>
             </div>
 
-            <div class="star-empty">
+            <div class="star-empty hide">
                 <i class="far fa-star"></i>
             </div>
-            <div class="star-half">
+            <div class="star-half hide">
                     <i class="fas fa-star-half"></i>
                 </div>
             <div class="star">
@@ -52,6 +52,7 @@
                 Moves: 0
             </h3>
         </div>
+        <input type="button" value="Restart" onclick="restartGame()">
     </section>
     <section class="board">
         <div class="card" data-icon="nodejs">
@@ -109,6 +110,7 @@
                 <p class="modal-stars"></p>
                 <h2>Congratulations you've won!</h2>
                 <p class="modal-message"></p>
+                <p>Would you like to play again?</p>
                 <input type="button" value="Yes" onclick="restartGame()">
                 <input type="button" value="No" onclick="closeModal()">
             </div>

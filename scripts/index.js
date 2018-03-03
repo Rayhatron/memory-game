@@ -34,15 +34,8 @@ let time;
 window.onload = () => {
     // Auto start the timer as soon as the game loads
     // TODO: Implement a start button that will start the time
-    time = setInterval(gameTimer, 1000);
 
-    halfStars.forEach((halfStar) => {
-        halfStar.classList.toggle('hide');
-    });
-
-    emptyStars.forEach((emptyStar) => {
-        emptyStar.classList.toggle('hide');
-    });
+    
 
 };
 
@@ -78,7 +71,10 @@ function displayClickedCard() {
         console.log(clickedCards);
     }
 
-    if(clickedCardsNumber == 2){
+    if(clickedCardsNumber == 2) {
+        if(moves == 0) {
+            time = setInterval(gameTimer, 1000);
+        }
         // Once we have selected 2 cards, let's see if they match or not
         moves++;
         moveCounter.innerHTML = `Moves: ${moves}`;
@@ -145,6 +141,59 @@ function endGame() {
     modalContainer.classList.remove('hide');
 }
 
+function restartGame() {
+    
+    // Clear all metrics that were being tracked
+    clearInterval(time);
+    clickedCardsNumber = 0; 
+    clickedCards = []; 
+    matchedCards = 0; 
+    moves = 0;
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+
+    // Reset the Star rating visual to 3 stars since it's a new game
+    stars.forEach((star) => {
+        star.classList.remove('hide');
+    });
+
+    halfStars.forEach((star) => {
+        star.classList.add('hide');
+    });
+
+    emptyStars.forEach((star) => {
+        star.classList.add('hide');
+    });
+
+    // Reset the displayed timer to 00:00:00
+    timer.innerHTML = `0${hours}:0${minutes}:0${seconds}`;
+    
+    // Reset the displayed moves to 0
+    moveCounter.innerHTML = `Moves: ${moves}`
+
+    // Make sure each card is hidden and clickable
+    cards.forEach((card) => {
+        card.classList.remove('show-card')
+        card.classList.remove('disable-card-click');
+    });
+
+    // Get a new random order of cards
+    shuffleArray(cards);
+
+    // Empty the board so that we can play newly shuffled cards
+    board.innerHTML = '';
+
+    // Add the newly shuffled cards to the board
+    renderShuffledCards();
+
+    // Hide the congratulations popup and reset it
+    modalStars.innerHTML = gameStars.innerHTML;
+    modalMessage.innerHTML = '';
+    modalContainer.classList.add('hide');
+    
+}
+
 function closeModal() {
     modalContainer.classList.toggle('hide');
 }
@@ -167,6 +216,7 @@ function shuffleArray(array) {
 }
 
 function renderShuffledCards(){
+    console.log(cards);
     // Output the shuffled cards back to the board
     for (let i= 0; i < cards.length; i++){
         cards[i].addEventListener("click", displayClickedCard);
