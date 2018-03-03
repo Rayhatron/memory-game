@@ -15,6 +15,11 @@ body {
     max-width: 500px;
 }
 
+.star, .star-half {
+    display: inline;
+    color: gold;
+}
+
 .board {
     display: flex;
     flex-wrap: wrap;
