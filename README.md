@@ -6,9 +6,25 @@ A web app of a classic [matching game](https://en.wikipedia.org/wiki/Matching_ga
 
 Here's a live version of the [Memory Game](https://rayhatron.github.io/memory-game/) deployed on my github pages website for to get started playing the game. 
 
+### How To Install  
+
+To play the game on your laptop instead of the live version, follow these instructions:
+
+- Enter the following command `git clone https://github.com/Rayhatron/memory-game.git` in your terminal or cmd to clone the repository to your laptop OR [download the zip folder](https://github.com/Rayhatron/memory-game/archive/master.zip) with the files for this project. 
+
+- Once that's done, navigate to the directory where the repository was cloned using your file explorer so you can view the files OR unzip the downloaded zip folder then open the resulting folder to view all the files. 
+
+- Finally, right click index.html and select open with Chrome or your favourite browser to run the Memory Game on your laptop. 
+
+That's it, Enjoy!
+
+## How To Play
+
 Playing the game is really simple, click/touch any card to reveal it and then touch another card to attempt to match a pair. Once you've clicked/touched the first card, a timer will begin and once you have attempted to match a pair, your moves will start to be recorded. 
 
 A star rating will be shown and will decrease as you make more moves. The less moves you take to complete the game the higher your star rating. 
+
+The game will end once you have successfully matched all the cards on the board. 
 
 To start a new game, simply press the restart button and the cards will be reshuffled, your moves, timer and star rating will also reset. 
 
