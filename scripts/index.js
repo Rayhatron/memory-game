@@ -139,6 +139,9 @@ function endGame() {
 }
 
 function restartGame() {
+
+    // Allow the timer to be restarted once it's been reset.
+    startTimer = true;
     
     // Clear all metrics that were being tracked
     clearInterval(time);
@@ -201,7 +204,7 @@ function allowCardsToBeSelected() {
 }
 
 function shuffleArray(array) {
-    /*  Shuffle the cards on the baord using Durstenfeld's version of the Fisher–Yates shuffle algorithm
+    /*  Shuffle the cards on the board using Durstenfeld's version of the Fisher–Yates shuffle algorithm
         Documentation: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_modern_algorithm
         Adapted from the following answer on Stackoverflow: https://stackoverflow.com/a/12646864
     */
