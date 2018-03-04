@@ -1,11 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Princess+Sofia);
+
+
 body {
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
     padding: 0;
     margin: 0;
+    font-family: 'Princess Sofia', cursive;
+    background-color: #f9f9f9;
 }
 
+
+h1 {
+    text-align: center;
+    font-size: 35px;
+    margin: 0;
+    padding: 5px 0;
+}
+
+
+/* Dashboard */
 .dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -13,52 +28,88 @@ body {
     justify-content: center;
     margin: 0 auto;
     max-width: 500px;
+    font-size: 20px;
 }
 
-.star, .star-half, .star-empty {
+
+.star, 
+.star-half, 
+.star-empty {
     display: inline;
     color: gold;
 }
 
+.stars,
+.timer-container,
+.move-counter-container,
+.restart-button-container {
+    margin: 0px auto;
+    width: 125px;
+    text-align: center;
+}
+
+
+.restart-button {
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+    font-family: 'Princess Sofia', cursive;
+    text-transform: lowercase;
+}
+
+
+/* Game board and cards */
 .board {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 auto;
     max-width: 500px;
-    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
 }
+
 
 .card {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     margin: 5px;
-    border: 1px solid yellow;
-    color: white;
+    border: 1px solid #00CED1;
+    color: #fff;
+    background-color: #fff;
+    font-size: 10px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
 }
 
+
+/* Visibility */
 .show-card {
-    background-color: darkturquoise;
+    background-color: #00CED1;
+    border: 1px solid #00CED1;
 }
+
 
 .disable-card-click {
     pointer-events: none;
 }
 
+
 .hide {
     display: none;
 }
 
+
+/* Congratulations popup screen */
 .modal-container {
     width: 100vw;
     height: 100vh;
     position: absolute;
     top: 0;
 }
+
 
 .modal {
     width: 100%;
@@ -69,6 +120,7 @@ body {
     background-color: rgba(0,0,0,0.12);
 }
 
+
 .modal-dialog {
     width: 300px;
     border-radius: 10px;
@@ -76,4 +128,32 @@ body {
     padding: 10px;
     text-align: center;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+
+/* Media queries */
+@media only screen and (min-width: 360px) {
+    .card {
+        width: 70px;
+        height: 70px;
+        font-size: 15px;
+    }
+}
+
+
+@media only screen and (min-width: 400px) {
+    .card {
+        width: 80px;
+        height: 80px;
+        font-size: 15px;
+    }
+}
+
+
+@media only screen and (min-width: 500px) {
+    .card {
+        width: 100px;
+        height: 100px;
+        font-size: 20px;
+    }
 }
