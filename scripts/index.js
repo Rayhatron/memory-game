@@ -24,6 +24,7 @@ let clickedCardsNumber = 0; // Track number of clicked cards
 let clickedCards = []; // Track the cards that have been clicked
 let matchedCards = 0; // Track the number of cards that have been matched to determine if winner or not
 let moves = 0; // Track the number of moves that the player has made
+let startTimer = true; // For triggering the timer once player starts playing
 
 // For tracking the time
 let hours = 0;
@@ -57,6 +58,12 @@ function gameTimer() {
 }
 
 function displayClickedCard() {
+    // If it's the first click that the player has made, start the timer
+    if(startTimer) {
+        startTimer = false;
+        time = setInterval(gameTimer, 1000);
+    }
+
     // Limit the number of cards that can be revealed to 2
     if(clickedCardsNumber < 2) {
         console.log("Clicked");
@@ -72,9 +79,6 @@ function displayClickedCard() {
     }
 
     if(clickedCardsNumber == 2) {
-        if(moves == 0) {
-            time = setInterval(gameTimer, 1000);
-        }
         // Once we have selected 2 cards, let's see if they match or not
         moves++;
         moveCounter.innerHTML = `Moves: ${moves}`;
