@@ -105,27 +105,27 @@ function matchClickedCards() {
 
 function updateStarRating() {
     switch(moves) {
-        case 9:
+        case 11:
             stars[2].classList.add('hide'); 
             halfStars[2].classList.remove('hide');
             break;
-        case 11: 
+        case 14: 
             halfStars[2].classList.add('hide');
             emptyStars[2].classList.remove('hide');
             break;
-        case 13: 
+        case 16: 
             stars[1].classList.add('hide'); 
             halfStars[1].classList.remove('hide');
             break;
-        case 14: 
+        case 18: 
             halfStars[1].classList.add('hide');
             emptyStars[1].classList.remove('hide');
             break;
-        case 15: 
+        case 19: 
             stars[0].classList.add('hide'); 
             halfStars[0].classList.remove('hide');
             break;
-        case 16:
+        case 20:
             halfStars[0].classList.add('hide');
             emptyStars[0].classList.remove('hide');
             break;
