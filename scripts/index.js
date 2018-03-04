@@ -32,14 +32,6 @@ let minutes = 0;
 let seconds = 0;
 let time;
 
-window.onload = () => {
-    // Auto start the timer as soon as the game loads
-    // TODO: Implement a start button that will start the time
-
-    
-
-};
-
 function gameTimer() {
     seconds++;
 
@@ -66,16 +58,14 @@ function displayClickedCard() {
 
     // Limit the number of cards that can be revealed to 2
     if(clickedCardsNumber < 2) {
-        console.log("Clicked");
         clickedCardsNumber++;
         
         // Keep track of the cards that we have clicked so we can do matching
         clickedCards.push(this);
         
         // Reveal the card and make sure it can't be clicked again until after matching
-        this.classList.toggle("show-card");
-        this.classList.toggle("disable-card-click");
-        console.log(clickedCards);
+        this.classList.add('show-card');
+        this.classList.add('disable-card-click');
     }
 
     if(clickedCardsNumber == 2) {
@@ -91,51 +81,54 @@ function displayClickedCard() {
 
 function matchClickedCards() {
     // Check if the icon is the same and if it is then they match and allow cards to be selected
-    if(clickedCards[0].dataset.icon == clickedCards[1].dataset.icon){
-        console.log("Match!");
-        matchedCards++;
+    clickedCards[0].dataset.icon == clickedCards[1].dataset.icon ? (
+        matchedCards++,
         // Once we have 8 matches it means the player has won the game so let's congratulate them
-        if(matchedCards == 8){
-            // TODO: Make a fancy congratulations message :) and ask the user if they want to play again 
-            // As well as show them their Star rating and time it took to complete.
-            clearInterval(time);
-            endGame();
-
-        }else{
-            allowCardsToBeSelected();
-        }
-    }else{
+        matchedCards == 8 ? (
+            clearInterval(time),
+            endGame()
+        ) : (
+            allowCardsToBeSelected()
+        )
+    ) : (
         // Wait a second before hiding the cards since they didn't match and allow more cards to be selected
         setTimeout(() => {
             clickedCards.forEach((card) => {
-                card.classList.remove("show-card");
-                card.classList.remove("disable-card-click");
+                card.classList.remove('show-card');
+                card.classList.remove('disable-card-click');
                 allowCardsToBeSelected();
             });
-        }, 1000);
-    }
+        }, 1000)
+    );
 
 }
 
 function updateStarRating() {
-    if(moves == 9 ) {
-        stars[2].classList.toggle('hide'); 
-        halfStars[2].classList.remove('hide'); 
-    }else if( moves == 11 ) {
-        halfStars[2].classList.toggle('hide');
-        emptyStars[2].classList.remove('hide');
-    }else if( moves == 13 ) {
-        stars[1].classList.toggle('hide'); 
-        halfStars[1].classList.remove('hide');
-    }else if( moves == 14 ) {
-        halfStars[1].classList.toggle('hide');
-        emptyStars[1].classList.remove('hide');
-    }else if( moves == 15 ) {
-        stars[0].classList.toggle('hide'); 
-        halfStars[0].classList.remove('hide');
-    }else if( moves == 16 ) {
-        halfStars[0].classList.toggle('hide');
-        emptyStars[0].classList.remove('hide');
+    switch(moves) {
+        case 9:
+            stars[2].classList.add('hide'); 
+            halfStars[2].classList.remove('hide');
+            break;
+        case 11: 
+            halfStars[2].classList.add('hide');
+            emptyStars[2].classList.remove('hide');
+            break;
+        case 13: 
+            stars[1].classList.add('hide'); 
+            halfStars[1].classList.remove('hide');
+            break;
+        case 14: 
+            halfStars[1].classList.add('hide');
+            emptyStars[1].classList.remove('hide');
+            break;
+        case 15: 
+            stars[0].classList.add('hide'); 
+            halfStars[0].classList.remove('hide');
+            break;
+        case 16:
+            halfStars[0].classList.add('hide');
+            emptyStars[0].classList.remove('hide');
+            break;
     }
 }
 
@@ -199,7 +192,7 @@ function restartGame() {
 }
 
 function closeModal() {
-    modalContainer.classList.toggle('hide');
+    modalContainer.classList.add('hide');
 }
 
 function allowCardsToBeSelected() {
@@ -219,13 +212,12 @@ function shuffleArray(array) {
 
 }
 
-function renderShuffledCards(){
-    console.log(cards);
-    // Output the shuffled cards back to the board
-    for (let i= 0; i < cards.length; i++){
-        cards[i].addEventListener("click", displayClickedCard);
-        board.appendChild(cards[i]);
-    }
+function renderShuffledCards() {
+    // Output the shuffled cards back to the board and make sure they're clickable
+    cards.forEach((card) => {
+        card.addEventListener('click', displayClickedCard);
+        board.appendChild(card);
+    });
 }
 
 shuffleArray(cards);
